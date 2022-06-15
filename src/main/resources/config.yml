@@ -1,0 +1,8 @@
+#Available languages
+#en_US
+#es_ES
+locale: en_US
+
+# This is the en_US.yml version for reference.
+# ONLY EDIT ONCE ALL LANGUAGE FILES HAVE BEEN UPDATED.
+languageFile: 1
