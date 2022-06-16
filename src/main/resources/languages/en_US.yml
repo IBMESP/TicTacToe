@@ -1,2 +1,8 @@
-table:
-    title: "Tic Tac Toe"
+game:
+  title: "Tic Tac Toe"
+  turn: "Is not your turn"
+  tie: "Tie"
+  win: "You win"
+  lose: "You lose"
+notOnline: " is not online"
+autoInvite: "You can not invite yourself"

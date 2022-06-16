@@ -19,6 +19,7 @@ public final class TicTacToe extends JavaPlugin {
     public DataManager languageData;
     public HashMap<UUID,Boolean> playerOne;
     public HashMap<UUID,Boolean> playerTwo;
+    public HashMap<UUID,Boolean> gameFinished;
 
 
     public final int languageFileVersion = 1;
@@ -33,6 +34,7 @@ public final class TicTacToe extends JavaPlugin {
 
         playerOne = new HashMap<>();
         playerTwo = new HashMap<>();
+        gameFinished = new HashMap<>();
 
         Bukkit.getConsoleSender().sendMessage("[TicTacToe] - Version: " + version + " Enabled - By Ib");
         registerCommands();
