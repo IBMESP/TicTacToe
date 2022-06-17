@@ -4,5 +4,6 @@ game:
   tie: "Tie"
   win: "You win"
   lose: "You lose"
+  invite: "Write the name of the player you want to invite"
 notOnline: " is not online"
 autoInvite: "You can not invite yourself"

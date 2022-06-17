@@ -6,3 +6,7 @@ locale: en_US
 # This is the en_US.yml version for reference.
 # ONLY EDIT ONCE ALL LANGUAGE FILES HAVE BEEN UPDATED.
 languageFile: 1
+
+gameTables:
+  - CRAFTING_TABLE
+  - BEDROCK

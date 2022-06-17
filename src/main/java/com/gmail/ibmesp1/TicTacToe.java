@@ -1,7 +1,9 @@
 package com.gmail.ibmesp1;
 
-import com.gmail.ibmesp1.command.TicCommand;
+import com.gmail.ibmesp1.commands.TicCommand;
+import com.gmail.ibmesp1.game.GameClick;
 import com.gmail.ibmesp1.events.TicEvents;
+import com.gmail.ibmesp1.game.GameStart;
 import com.gmail.ibmesp1.utils.DataManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -17,10 +19,14 @@ public final class TicTacToe extends JavaPlugin {
     public String name;
     public String version;
     public DataManager languageData;
+    public DataManager tablesLoc;
     public HashMap<UUID,Boolean> playerOne;
     public HashMap<UUID,Boolean> playerTwo;
     public HashMap<UUID,Boolean> gameFinished;
-
+    public HashMap<UUID,Boolean> gameInvitation;
+    public HashMap<UUID,Integer> player1C;
+    public HashMap<UUID,Integer> player2C;
+    public GameStart gameStart;
 
     public final int languageFileVersion = 1;
 
@@ -31,10 +37,16 @@ public final class TicTacToe extends JavaPlugin {
         name = "[" + pdffile.getName() + "]";
 
         languageData = new DataManager(this,"languages/" + getConfig().getString("locale") + ".yml");
+        tablesLoc = new DataManager(this,"tablesLoc.yml");
 
         playerOne = new HashMap<>();
         playerTwo = new HashMap<>();
         gameFinished = new HashMap<>();
+        gameInvitation = new HashMap<>();
+        player1C = new HashMap<>();
+        player2C = new HashMap<>();
+
+        gameStart = new GameStart(this);
 
         Bukkit.getConsoleSender().sendMessage("[TicTacToe] - Version: " + version + " Enabled - By Ib");
         registerCommands();
@@ -43,6 +55,8 @@ public final class TicTacToe extends JavaPlugin {
         getConfig().options().copyDefaults(true);
         saveDefaultConfig();
         getLanguageData().options().copyDefaults(true);
+        tablesLoc.getConfig().options().copyDefaults(true);
+        tablesLoc.saveConfig();
 
         if (getConfig().getInt("languageFile") < languageFileVersion) {
             urgentConsoleWarning("You language files are no longer supported with this version!");
@@ -63,6 +77,7 @@ public final class TicTacToe extends JavaPlugin {
 
     public void registerEvents(){
         Bukkit.getPluginManager().registerEvents(new TicEvents(this),this);
+        Bukkit.getPluginManager().registerEvents(new GameClick(this, gameStart,tablesLoc),this);
     }
 
     public FileConfiguration getLanguageData() {
@@ -76,4 +91,8 @@ public final class TicTacToe extends JavaPlugin {
     private void urgentConsoleWarning(String msg) {
         Bukkit.getConsoleSender().sendMessage("[TicTacToe] " + ChatColor.RED + msg);
     }
+
+    //Aceptar la partida
+    //GameTable
+
 }

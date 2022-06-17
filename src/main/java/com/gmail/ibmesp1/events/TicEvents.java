@@ -73,6 +73,9 @@ public class TicEvents implements Listener {
     public void onClick(InventoryClickEvent e) {
         InventoryView inventoryView = e.getView();
 
+        player1Counter = 0;
+        player2Counter = 0;
+
         if (!inventoryView.getTitle().equals(plugin.getLanguageString("game.title"))) {
             return;
         }
@@ -104,7 +107,9 @@ public class TicEvents implements Listener {
                 plugin.playerOne.replace(player1.getUniqueId(), false);
                 plugin.playerTwo.replace(player2.getUniqueId(), true);
 
+                player1Counter = plugin.player1C.get(player1.getUniqueId());
                 player1Counter++;
+                plugin.player1C.replace(player1.getUniqueId(),player1Counter);
 
             } else {
                 player.sendMessage(plugin.getLanguageString("game.turn"));
@@ -118,13 +123,15 @@ public class TicEvents implements Listener {
                 plugin.playerOne.replace(player1.getUniqueId(), true);
                 plugin.playerTwo.replace(player2.getUniqueId(), false);
 
+                player2Counter = plugin.player2C.get(player2.getUniqueId());
                 player2Counter++;
+                plugin.player2C.replace(player2.getUniqueId(),player2Counter);
             } else {
                 player.sendMessage(plugin.getLanguageString("game.turn"));
             }
         }
 
-        if(player1Counter > 2){
+        if(plugin.player1C.get(player1.getUniqueId()) > 2){
             if(checkVictory(h1,player1,player2,O,TicTacToe) || checkVictory(h2,player1,player2,O,TicTacToe) || checkVictory(h3,player1,player2,O,TicTacToe) ||
                     checkVictory(v1,player1,player2,O,TicTacToe) || checkVictory(v2,player1,player2,O,TicTacToe) || checkVictory(v3,player1,player2,O,TicTacToe) ||
                     checkVictory(d1,player1,player2,O,TicTacToe) || checkVictory(d2,player1,player2,O,TicTacToe)){
@@ -136,7 +143,7 @@ public class TicEvents implements Listener {
             }
         }
 
-        if(player2Counter > 2) {
+        if(plugin.player2C.get(player2.getUniqueId()) > 2) {
             if(checkVictory(h1,player2,player1,X,TicTacToe) || checkVictory(h2,player2,player1,X,TicTacToe) || checkVictory(h3,player2,player1,X,TicTacToe) ||
                     checkVictory(v1,player2,player1,X,TicTacToe) || checkVictory(v2,player2,player1,X,TicTacToe) || checkVictory(v3,player2,player1,X,TicTacToe) ||
                     checkVictory(d1,player2,player1,X,TicTacToe) || checkVictory(d2,player2,player1,X,TicTacToe)){
@@ -147,7 +154,7 @@ public class TicEvents implements Listener {
                 player2.closeInventory();
             }
 
-            if(player1Counter == 5 && player2Counter == 4){
+            if(plugin.player1C.get(player1.getUniqueId()) == 5 && plugin.player2C.get(player2.getUniqueId()) == 4){
                 endGame(player1,player2);
                 plugin.gameFinished.put(player1.getUniqueId(),true);
                 plugin.gameFinished.put(player2.getUniqueId(),true);
@@ -214,8 +221,8 @@ public class TicEvents implements Listener {
     }
 
     private void endGame(Player player1,Player player2){
-        player1Counter = 0;
-        player2Counter = 0;
+        plugin.player1C.remove(player1.getUniqueId());
+        plugin.player2C.remove(player2.getUniqueId());
         plugin.playerOne.remove(player1.getUniqueId());
         plugin.playerTwo.remove(player2.getUniqueId());
     }
