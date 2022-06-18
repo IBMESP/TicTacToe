@@ -8,19 +8,16 @@ import org.bukkit.World;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
 
-import java.lang.management.BufferPoolMXBean;
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 
-public class ArmorStands {
+public class ArmorUtils {
 
     private final TicTacToe plugin;
     private final DataManager tablesLoc;
 
-    public ArmorStands(TicTacToe plugin, DataManager tablesLoc) {
+    public ArmorUtils(TicTacToe plugin, DataManager tablesLoc) {
         this.plugin = plugin;
         this.tablesLoc = tablesLoc;
     }

@@ -2,7 +2,7 @@ package com.gmail.ibmesp1.commands;
 
 import com.gmail.ibmesp1.TicTacToe;
 import com.gmail.ibmesp1.game.GameStart;
-import com.gmail.ibmesp1.utils.ArmorStands;
+import com.gmail.ibmesp1.utils.ArmorUtils;
 import com.gmail.ibmesp1.utils.DataManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -15,6 +15,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
+import java.util.Collection;
 import java.util.List;
 
 public class TicCommand implements CommandExecutor {
@@ -22,14 +23,11 @@ public class TicCommand implements CommandExecutor {
     private TicTacToe plugin;
     private final GameStart gameStart;
     private final DataManager tablesLoc;
-    private final ArmorStands armorStands;
 
-    public TicCommand(TicTacToe plugin, GameStart gameStart, DataManager tablesLoc, ArmorStands armorStands) {
+    public TicCommand(TicTacToe plugin, GameStart gameStart, DataManager tablesLoc) {
         this.plugin = plugin;
         this.gameStart = gameStart;
         this.tablesLoc = tablesLoc;
-
-        this.armorStands = armorStands;
     }
 
     @Override
@@ -58,7 +56,7 @@ public class TicCommand implements CommandExecutor {
                         String path = world + "-" + x + "-" + y + "-" + z;
 
                         if(tablesLoc.getConfig().contains("Locations." + path)){
-                            List<Entity> entityList = player.getNearbyEntities(5,5,5);
+                            Collection<Entity> entityList = loc.getWorld().getNearbyEntities(loc,1,1,1);
 
                             for (Entity entity:entityList){
                                 if (entity.getType().equals(EntityType.ARMOR_STAND)){
@@ -73,7 +71,6 @@ public class TicCommand implements CommandExecutor {
                 }
                 return false;
             }
-
 
             if(!plugin.players.containsKey(player.getUniqueId())){
                 player.sendMessage(plugin.getLanguageString("game.noInvitation"));

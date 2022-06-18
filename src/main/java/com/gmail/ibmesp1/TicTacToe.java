@@ -4,7 +4,7 @@ import com.gmail.ibmesp1.commands.TicCommand;
 import com.gmail.ibmesp1.game.GameClick;
 import com.gmail.ibmesp1.events.TicEvents;
 import com.gmail.ibmesp1.game.GameStart;
-import com.gmail.ibmesp1.utils.ArmorStands;
+import com.gmail.ibmesp1.utils.ArmorUtils;
 import com.gmail.ibmesp1.utils.DataManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -29,7 +29,7 @@ public final class TicTacToe extends JavaPlugin {
     public HashMap<UUID,Integer> player1C;
     public HashMap<UUID,Integer> player2C;
     public GameStart gameStart;
-    public ArmorStands armorStands;
+    public ArmorUtils armorUtils;
 
     public final int languageFileVersion = 1;
 
@@ -51,9 +51,9 @@ public final class TicTacToe extends JavaPlugin {
         player2C = new HashMap<>();
 
         gameStart = new GameStart(this);
-        armorStands = new ArmorStands(this,tablesLoc);
+        armorUtils = new ArmorUtils(this,tablesLoc);
 
-        armorStands.createHolo();
+        armorUtils.createHolo();
 
         Bukkit.getConsoleSender().sendMessage("[TicTacToe] - Version: " + version + " Enabled - By Ib");
         registerCommands();
@@ -75,11 +75,11 @@ public final class TicTacToe extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        armorStands.deleteHolo();
+        armorUtils.deleteHolo();
     }
 
     public void registerCommands() {
-        getCommand("ttt").setExecutor(new TicCommand(this,gameStart, tablesLoc, armorStands));
+        getCommand("ttt").setExecutor(new TicCommand(this,gameStart, tablesLoc));
     }
 
     public void registerEvents(){
@@ -98,6 +98,4 @@ public final class TicTacToe extends JavaPlugin {
     private void urgentConsoleWarning(String msg) {
         Bukkit.getConsoleSender().sendMessage("[TicTacToe] " + ChatColor.RED + msg);
     }
-
-    //GameTable - ArmorStands
 }
