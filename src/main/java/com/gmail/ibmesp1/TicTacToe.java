@@ -6,6 +6,8 @@ import com.gmail.ibmesp1.events.TicEvents;
 import com.gmail.ibmesp1.game.GameStart;
 import com.gmail.ibmesp1.utils.ArmorUtils;
 import com.gmail.ibmesp1.utils.DataManager;
+import com.gmail.ibmesp1.utils.Metrics;
+import com.gmail.ibmesp1.utils.UpdateChecker;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -50,6 +52,8 @@ public final class TicTacToe extends JavaPlugin {
         player1C = new HashMap<>();
         player2C = new HashMap<>();
 
+        new Metrics(this,1);
+
         gameStart = new GameStart(this);
         armorUtils = new ArmorUtils(this,tablesLoc);
 
@@ -64,6 +68,14 @@ public final class TicTacToe extends JavaPlugin {
         getLanguageData().options().copyDefaults(true);
         tablesLoc.getConfig().options().copyDefaults(true);
         tablesLoc.saveConfig();
+
+        new UpdateChecker(this,99840).getLatestVersion(version -> {
+            if(this.getDescription().getVersion().equalsIgnoreCase(version)) {
+                Bukkit.getLogger().info("[Backpacks] " + getLanguageString("config.notUpdate"));
+            } else {
+                Bukkit.getLogger().warning("[Backpacks] " + getLanguageString("config.update"));
+            }
+        });
 
         if (getConfig().getInt("languageFile") < languageFileVersion) {
             urgentConsoleWarning("You language files are no longer supported with this version!");

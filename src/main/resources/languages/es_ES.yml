@@ -1,0 +1,22 @@
+game:
+  title: " vs "
+  turn: "No es tu turno"
+  tie: "Empate"
+  win: "Has ganado"
+  lose: "Has perdido"
+  invite: "Escribe el nombre del jugador al que quieras invitar"
+  invitedBy : " te ha invitado a una partida, /ttt accept para aceptar la invitacion"
+  60s: "Tienes 60 segundos para aceptar la invitacion"
+  expired: "La invitacion ha caducado"
+  noInvitation: "No tienes ninguna invitacion"
+  table:
+    title: "Mesa de juego"
+    subtitle: "Haz clic para invitar a un jugador"
+notOnline: " no esta online"
+autoInvite: "No te puedes invitar a ti mismo"
+config:
+  reloaded: "[TicTacToe] Configuracion recargada"
+  perms: "No tienes permiso para usar este comando"
+  help: "Usa /ttt help para ver los comandos"
+  update: "TicTacToe tiene una nueva actializacion"
+  notUpdate: "TicTacToe esta actualizado"

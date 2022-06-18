@@ -1,5 +1,5 @@
 game:
-  title: "Tic Tac Toe"
+  title: " vs "
   turn: "Is not your turn"
   tie: "Tie"
   win: "You win"
@@ -14,3 +14,9 @@ game:
     subtitle: "Click to invite a player"
 notOnline: " is not online"
 autoInvite: "You can not invite yourself"
+config:
+  reloaded: "[TicTacToe] Config reloaded!"
+  perms: "You do not have permission to use this command"
+  help: "Use /ttt help to see the commands"
+  update: "TicTacToe has a new update"
+  notUpdate: "TicTacToe is up to date"

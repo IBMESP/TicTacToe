@@ -169,4 +169,3 @@ public class GameClick implements Listener {
         return false;
     }
 }
-

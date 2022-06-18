@@ -5,6 +5,7 @@ import com.gmail.ibmesp1.game.GameStart;
 import com.gmail.ibmesp1.utils.ArmorUtils;
 import com.gmail.ibmesp1.utils.DataManager;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -14,6 +15,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.ItemMergeEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Collection;
 import java.util.List;
@@ -70,6 +74,33 @@ public class TicCommand implements CommandExecutor {
                     }
                 }
                 return false;
+            }
+
+            if(args[0].equalsIgnoreCase("version")){
+                player.sendMessage(ChatColor.GREEN + "[TicTacToe]" + ChatColor.RESET + " Version" + plugin.version);
+            }
+
+            if(args[0].equalsIgnoreCase("reload")){
+                if (player.hasPermission("ttt.reload")) {
+                    plugin.reloadConfig();
+                    tablesLoc.reloadConfig();
+                    player.sendMessage(ChatColor.GREEN + plugin.getLanguageString("config.reloaded"));
+                    System.out.println(plugin.getLanguageString("config.reloaded"));
+                }else{
+                    player.sendMessage(ChatColor.RED + plugin.getLanguageString("config.perms"));
+                }
+            }
+
+            if(args[0].equalsIgnoreCase("help")){
+                //help
+            }
+
+            if(args[0].equalsIgnoreCase("give")){
+                ItemStack nameTag = new ItemStack(Material.NAME_TAG);
+                ItemMeta tagMeta = nameTag.getItemMeta();
+
+                tagMeta.setDisplayName(ChatColor.GREEN + "" + ChatColor.BOLD + "TableMaker");
+                //tagMeta.
             }
 
             if(!plugin.players.containsKey(player.getUniqueId())){
