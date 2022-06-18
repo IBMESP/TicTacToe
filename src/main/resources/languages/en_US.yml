@@ -5,6 +5,12 @@ game:
   win: "You win"
   lose: "You lose"
   invite: "Write the name of the player you want to invite"
-  invitedBy : " has invited you to a game, /ttt accept to accept the game"
+  invitedBy : " has invited you to a game, /ttt accept to accept the invitation"
+  60s: "You have 60 seconds to accept the invitation"
+  expired: "The invitation has expired"
+  noInvitation: "You don't have any invitation"
+  table:
+    title: "Game Table"
+    subtitle: "Click to invite a player"
 notOnline: " is not online"
 autoInvite: "You can not invite yourself"
