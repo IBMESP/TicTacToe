@@ -21,19 +21,7 @@ public class GameStart {
         game_slots = new int[]{12, 13, 14, 21, 22, 23, 30, 31, 32};
     }
 
-    public void gameStarts(Player player1,String msg){
-
-        Player player2 = Bukkit.getPlayer(msg);
-
-        if(player2 == null){
-            player1.sendMessage(ChatColor.RED + msg + plugin.getLanguageString("notOnline"));
-            return;
-        }
-
-        if(player1 == player2){
-            player1.sendMessage(ChatColor.RED + plugin.getLanguageString("autoInvite"));
-            return;
-        }
+    public void gameStarts(Player player1,Player player2){
 
         Inventory TicTacToe = Bukkit.createInventory(null,5*9,plugin.getLanguageString("game.title"));
 

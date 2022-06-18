@@ -5,6 +5,7 @@ import com.gmail.ibmesp1.game.GameClick;
 import com.gmail.ibmesp1.events.TicEvents;
 import com.gmail.ibmesp1.game.GameStart;
 import com.gmail.ibmesp1.utils.DataManager;
+import org.apache.logging.log4j.core.helpers.UUIDUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -20,6 +21,7 @@ public final class TicTacToe extends JavaPlugin {
     public String version;
     public DataManager languageData;
     public DataManager tablesLoc;
+    public HashMap<UUID,UUID> players;
     public HashMap<UUID,Boolean> playerOne;
     public HashMap<UUID,Boolean> playerTwo;
     public HashMap<UUID,Boolean> gameFinished;
@@ -39,6 +41,7 @@ public final class TicTacToe extends JavaPlugin {
         languageData = new DataManager(this,"languages/" + getConfig().getString("locale") + ".yml");
         tablesLoc = new DataManager(this,"tablesLoc.yml");
 
+        players= new HashMap<>();
         playerOne = new HashMap<>();
         playerTwo = new HashMap<>();
         gameFinished = new HashMap<>();
@@ -72,7 +75,7 @@ public final class TicTacToe extends JavaPlugin {
     }
 
     public void registerCommands() {
-        getCommand("ttt").setExecutor(new TicCommand(this));
+        getCommand("ttt").setExecutor(new TicCommand(this,gameStart));
     }
 
     public void registerEvents(){
@@ -92,7 +95,7 @@ public final class TicTacToe extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage("[TicTacToe] " + ChatColor.RED + msg);
     }
 
-    //Aceptar la partida
-    //GameTable
+    //GameTable - ArmorStands
+    //Tiempo limite para aceptar la invitacion
 
 }

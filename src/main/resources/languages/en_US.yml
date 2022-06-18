@@ -5,5 +5,6 @@ game:
   win: "You win"
   lose: "You lose"
   invite: "Write the name of the player you want to invite"
+  invitedBy : " has invited you to a game, /ttt accept to accept the game"
 notOnline: " is not online"
 autoInvite: "You can not invite yourself"
