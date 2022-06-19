@@ -1,9 +1,9 @@
 # TicTacToe
 Spigot plugin that adds TicTacToe
 ## Badges:
-[![Latest Version](https://img.shields.io/badge/Latest%20Version-1.0.0-brightgreen)](https://github.com/IBMESP/Backpacks/releases/latest)
-![Spigot Downloads](https://img.shields.io/spiget/downloads/99840?label=Spigot%20Downloads)
-![Spigot Rating](https://img.shields.io/spiget/rating/99840?label=Spigot%20Rating)
+[![Latest Version](https://img.shields.io/badge/Latest%20Version-1.0.0-brightgreen)](https://github.com/IBMESP/TicTacToe/releases/latest)
+![Spigot Downloads](https://img.shields.io/spiget/downloads/102743?label=Spigot%20Downloads)
+![Spigot Rating](https://img.shields.io/spiget/rating/102743?label=Spigot%20Rating)
 
 ###Features
 - **TableMaker** to create Game Tables
@@ -73,7 +73,3 @@ Spigot plugin that adds TicTacToe
     notUpdate: "TicTacToe is up to date"
   ```
 </details>
-
-![](https://bstats.org/signatures/bukkit/Backpacks%20-%20by%20Ib.svg)
-
-  
