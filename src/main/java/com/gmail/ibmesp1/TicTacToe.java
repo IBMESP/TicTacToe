@@ -8,6 +8,7 @@ import com.gmail.ibmesp1.game.GameStart;
 import com.gmail.ibmesp1.utils.ArmorUtils;
 import com.gmail.ibmesp1.utils.DataManager;
 import com.gmail.ibmesp1.utils.Metrics;
+import com.gmail.ibmesp1.utils.UpdateCheck;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -69,13 +70,13 @@ public final class TicTacToe extends JavaPlugin {
         tablesLoc.getConfig().options().copyDefaults(true);
         tablesLoc.saveConfig();
 
-        /*new UpdateCheck(this,).getLatestVersion(version -> {
+        new UpdateCheck(this,102743).getLatestVersion(version -> {
             if(this.getDescription().getVersion().equalsIgnoreCase(version)) {
                 Bukkit.getLogger().info("[TicTacToe] " + getLanguageString("config.notUpdate"));
             } else {
                 Bukkit.getLogger().warning("[TicTacToe] " + getLanguageString("config.update"));
             }
-        });*/
+        });
 
         if (getConfig().getInt("languageFile") < languageFileVersion) {
             urgentConsoleWarning("You language files are no longer supported with this version!");
