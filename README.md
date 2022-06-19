@@ -5,15 +5,15 @@ Spigot plugin that adds TicTacToe
 ![Spigot Downloads](https://img.shields.io/spiget/downloads/102743?label=Spigot%20Downloads)
 ![Spigot Rating](https://img.shields.io/spiget/rating/102743?label=Spigot%20Rating)
 
-###Features
+### Features
 - **TableMaker** to create Game Tables
 - **Configure** which blocks can be converted to a Game Table
 - **Multiple languages**
 
-###Showcase
+### Showcase
 ![](https://media0.giphy.com/media/ssfZvuYtWrcCoQrd40/giphy.gif?cid=790b7611b5ef57b923c37af2287dc75b1d7729ecb6cbb1b9&rid=giphy.gif&ct=g)
 
-###Commands and permissions
+### Commands and permissions
 - **Permission:** ttt.delete →
     - **Commands:**
         - /ttt delete : Deletes the game table you are looking at
@@ -24,7 +24,7 @@ Spigot plugin that adds TicTacToe
     - **Commands:**
         - /ttt give : Gives the Table Maker
         
-###Config
+### Config
 <details>
   <summary>Default config.yml</summary>
 
