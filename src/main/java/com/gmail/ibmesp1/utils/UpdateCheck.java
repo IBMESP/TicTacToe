@@ -9,12 +9,12 @@ import java.net.URL;
 import java.util.Scanner;
 import java.util.function.Consumer;
 
-public class UpdateChecker {
+public class UpdateCheck {
 
     private final TicTacToe plugin;
     private int resourceId;
 
-    public UpdateChecker(TicTacToe plugin, int resourceId) {
+    public UpdateCheck(TicTacToe plugin, int resourceId) {
         this.plugin = plugin;
         this.resourceId = resourceId;
     }

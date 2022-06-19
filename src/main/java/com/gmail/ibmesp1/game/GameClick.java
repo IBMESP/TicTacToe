@@ -17,6 +17,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -37,8 +38,13 @@ public class GameClick implements Listener {
 
         Player player = e.getPlayer();
         Action action = e.getAction();
-        ItemStack conv = new ItemStack(Material.NAME_TAG);
         List<String> gameTables = plugin.getConfig().getStringList("gameTables");
+
+        ItemStack nameTag = new ItemStack(Material.NAME_TAG);
+        ItemMeta tagMeta = nameTag.getItemMeta();
+
+        tagMeta.setDisplayName(ChatColor.GREEN + "" + ChatColor.BOLD + "TableMaker");
+        nameTag.setItemMeta(tagMeta);
 
         if (!(e.getHand() == EquipmentSlot.HAND)) {
             return;
@@ -55,7 +61,7 @@ public class GameClick implements Listener {
         Material block = e.getClickedBlock().getType();
         Location loc = e.getClickedBlock().getLocation();
 
-        if(!player.getInventory().getItemInMainHand().equals(conv)) {
+        if(!player.getInventory().getItemInMainHand().equals(nameTag)) {
 
             if (plugin.gameInvitation.containsKey(player.getUniqueId())) {
                 return;
@@ -134,6 +140,8 @@ public class GameClick implements Listener {
             plugin.gameInvitation.remove(player.getUniqueId());
             return;
         }
+
+        player.sendMessage(plugin.getLanguageString("game.invited") + player2.getName());
 
         player2.sendMessage(player.getName() + plugin.getLanguageString("game.invitedBy"));
         player2.sendMessage(plugin.getLanguageString("game.60s"));

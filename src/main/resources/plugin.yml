@@ -6,4 +6,4 @@ authors: [IBM_ESP]
 
 commands:
   ttt:
-    description: "Lol"
+    description: "Use /ttt help to see the commands"

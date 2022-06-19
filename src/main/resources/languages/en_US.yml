@@ -1,11 +1,12 @@
 game:
-  title: " vs "
+  title: "TicTacToe"
   turn: "Is not your turn"
   tie: "Tie"
   win: "You win"
   lose: "You lose"
   invite: "Write the name of the player you want to invite"
   invitedBy : " has invited you to a game, /ttt accept to accept the invitation"
+  invited: "You invited "
   60s: "You have 60 seconds to accept the invitation"
   expired: "The invitation has expired"
   noInvitation: "You don't have any invitation"

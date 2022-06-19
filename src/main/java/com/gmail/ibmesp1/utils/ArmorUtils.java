@@ -23,66 +23,70 @@ public class ArmorUtils {
     }
 
     public void createHolo(){
-        Set<String> section = tablesLoc.getConfig().getConfigurationSection("Locations").getKeys(false);
 
-        for(String key:section){
+        try {
+            Set<String> section = tablesLoc.getConfig().getConfigurationSection("Locations").getKeys(false);
 
-            String[] parts = key.split("-");
+            for(String key:section) {
 
-            World world = Bukkit.getWorld(parts[0]);
-            int x = Integer.parseInt(parts[1]);
-            int y = Integer.parseInt(parts[2]);
-            int z = Integer.parseInt(parts[3]);
+                String[] parts = key.split("-");
 
-            Location loc = new Location(world,x,y,z);
+                World world = Bukkit.getWorld(parts[0]);
+                int x = Integer.parseInt(parts[1]);
+                int y = Integer.parseInt(parts[2]);
+                int z = Integer.parseInt(parts[3]);
 
-            Location floc = loc.add(+0.5, 0, +0.5);
+                Location loc = new Location(world, x, y, z);
 
-            ArmorStand title = floc.getWorld().spawn(floc, ArmorStand.class);
+                Location floc = loc.add(+0.5, 0, +0.5);
 
-            title.setGravity(false);
-            title.setGravity(false);
-            title.setCanPickupItems(false);
-            title.setCustomName(ChatColor.DARK_GREEN + "" + ChatColor.BOLD + plugin.getLanguageString("game.table.title"));
-            title.setCustomNameVisible(true);
-            title.setVisible(false);
+                ArmorStand title = floc.getWorld().spawn(floc, ArmorStand.class);
 
-            Location sloc = floc.add(0, -0.3, 0);
+                title.setGravity(false);
+                title.setGravity(false);
+                title.setCanPickupItems(false);
+                title.setCustomName(ChatColor.DARK_GREEN + "" + ChatColor.BOLD + plugin.getLanguageString("game.table.title"));
+                title.setCustomNameVisible(true);
+                title.setVisible(false);
 
-            ArmorStand subtitle = floc.getWorld().spawn(sloc, ArmorStand.class);
+                Location sloc = floc.add(0, -0.3, 0);
 
-            subtitle.setGravity(false);
-            subtitle.setGravity(false);
-            subtitle.setCanPickupItems(false);
-            subtitle.setCustomName(ChatColor.AQUA + plugin.getLanguageString("game.table.subtitle"));
-            subtitle.setCustomNameVisible(true);
-            subtitle.setVisible(false);
-        }
+                ArmorStand subtitle = floc.getWorld().spawn(sloc, ArmorStand.class);
+
+                subtitle.setGravity(false);
+                subtitle.setGravity(false);
+                subtitle.setCanPickupItems(false);
+                subtitle.setCustomName(ChatColor.AQUA + plugin.getLanguageString("game.table.subtitle"));
+                subtitle.setCustomNameVisible(true);
+                subtitle.setVisible(false);
+            }
+        }catch (NullPointerException ignored){}
     }
 
     public void deleteHolo(){
 
-        Set<String> section = tablesLoc.getConfig().getConfigurationSection("Locations").getKeys(false);
+        try{
+            Set<String> section = tablesLoc.getConfig().getConfigurationSection("Locations").getKeys(false);
 
-        for(String key:section) {
+            for(String key:section) {
 
-            String[] parts = key.split("-");
+                String[] parts = key.split("-");
 
-            World world = Bukkit.getWorld(parts[0]);
-            int x = Integer.parseInt(parts[1]);
-            int y = Integer.parseInt(parts[2]);
-            int z = Integer.parseInt(parts[3]);
+                World world = Bukkit.getWorld(parts[0]);
+                int x = Integer.parseInt(parts[1]);
+                int y = Integer.parseInt(parts[2]);
+                int z = Integer.parseInt(parts[3]);
 
-            Location loc = new Location(world, x, y, z);
+                Location loc = new Location(world, x, y, z);
 
-            Collection<Entity> entityList = loc.getWorld().getNearbyEntities(loc,1,1,1);
+                Collection<Entity> entityList = loc.getWorld().getNearbyEntities(loc,1,1,1);
 
-            for (Entity entity:entityList){
-                if (entity.getType().equals(EntityType.ARMOR_STAND)){
-                    entity.remove();
+                for (Entity entity:entityList){
+                    if (entity.getType().equals(EntityType.ARMOR_STAND)){
+                        entity.remove();
+                    }
                 }
             }
-        }
-
+        }catch (NullPointerException ignored){}
     }
 }

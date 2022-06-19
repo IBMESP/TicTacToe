@@ -6,6 +6,7 @@ game:
   lose: "Has perdido"
   invite: "Escribe el nombre del jugador al que quieras invitar"
   invitedBy : " te ha invitado a una partida, /ttt accept para aceptar la invitacion"
+  invited: "Has invitado a "
   60s: "Tienes 60 segundos para aceptar la invitacion"
   expired: "La invitacion ha caducado"
   noInvitation: "No tienes ninguna invitacion"

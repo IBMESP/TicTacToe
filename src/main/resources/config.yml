@@ -7,6 +7,7 @@ locale: en_US
 # ONLY EDIT ONCE ALL LANGUAGE FILES HAVE BEEN UPDATED.
 languageFile: 1
 
+# Blocks that you can convert into a game table
 gameTables:
-  - CRAFTING_TABLE
-  - BEDROCK
+  - EMERALD_BLOCK
+  - CHISELED_STONE_BRICKS

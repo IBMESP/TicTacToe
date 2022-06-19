@@ -23,7 +23,7 @@ public class GameStart {
 
     public void gameStarts(Player player1,Player player2){
 
-        Inventory TicTacToe = Bukkit.createInventory(null,5*9, ChatColor.DARK_RED +  "" + player1 + "" + plugin.getLanguageString("game.title") + ChatColor.DARK_BLUE + "" + player2);
+        Inventory TicTacToe = Bukkit.createInventory(null,5*9, plugin.getLanguageString("game.title"));
 
         for (int glass_slot : glass_slots) {
             TicTacToe.setItem(glass_slot, new ItemStack(Material.BLACK_STAINED_GLASS_PANE));

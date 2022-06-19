@@ -1,13 +1,13 @@
 package com.gmail.ibmesp1;
 
 import com.gmail.ibmesp1.commands.TicCommand;
+import com.gmail.ibmesp1.commands.TicTab;
 import com.gmail.ibmesp1.game.GameClick;
 import com.gmail.ibmesp1.events.TicEvents;
 import com.gmail.ibmesp1.game.GameStart;
 import com.gmail.ibmesp1.utils.ArmorUtils;
 import com.gmail.ibmesp1.utils.DataManager;
 import com.gmail.ibmesp1.utils.Metrics;
-import com.gmail.ibmesp1.utils.UpdateChecker;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -52,7 +52,7 @@ public final class TicTacToe extends JavaPlugin {
         player1C = new HashMap<>();
         player2C = new HashMap<>();
 
-        new Metrics(this,1);
+        new Metrics(this,15520);
 
         gameStart = new GameStart(this);
         armorUtils = new ArmorUtils(this,tablesLoc);
@@ -69,13 +69,13 @@ public final class TicTacToe extends JavaPlugin {
         tablesLoc.getConfig().options().copyDefaults(true);
         tablesLoc.saveConfig();
 
-        new UpdateChecker(this,99840).getLatestVersion(version -> {
+        /*new UpdateCheck(this,).getLatestVersion(version -> {
             if(this.getDescription().getVersion().equalsIgnoreCase(version)) {
-                Bukkit.getLogger().info("[Backpacks] " + getLanguageString("config.notUpdate"));
+                Bukkit.getLogger().info("[TicTacToe] " + getLanguageString("config.notUpdate"));
             } else {
-                Bukkit.getLogger().warning("[Backpacks] " + getLanguageString("config.update"));
+                Bukkit.getLogger().warning("[TicTacToe] " + getLanguageString("config.update"));
             }
-        });
+        });*/
 
         if (getConfig().getInt("languageFile") < languageFileVersion) {
             urgentConsoleWarning("You language files are no longer supported with this version!");
@@ -91,7 +91,8 @@ public final class TicTacToe extends JavaPlugin {
     }
 
     public void registerCommands() {
-        getCommand("ttt").setExecutor(new TicCommand(this,gameStart, tablesLoc));
+        getCommand("ttt").setExecutor(new TicCommand(this,gameStart, tablesLoc, armorUtils));
+        getCommand("ttt").setTabCompleter(new TicTab());
     }
 
     public void registerEvents(){
