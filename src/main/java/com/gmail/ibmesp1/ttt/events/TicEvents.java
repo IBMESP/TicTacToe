@@ -1,8 +1,7 @@
-package com.gmail.ibmesp1.events;
+package com.gmail.ibmesp1.ttt.events;
 
-import com.gmail.ibmesp1.TicTacToe;
-import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.properties.Property;
+import com.gmail.ibmesp1.ibcore.skull.NonPlayerSkulls;
+import com.gmail.ibmesp1.ttt.TicTacToe;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
@@ -17,9 +16,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
-import java.lang.reflect.Field;
 import java.util.List;
-import java.util.UUID;
 
 public class TicEvents implements Listener {
 
@@ -30,6 +27,7 @@ public class TicEvents implements Listener {
     private final ItemStack head;
     private int player1Counter;
     private int player2Counter;
+    private NonPlayerSkulls nps;
 
     private final int[] h1;
     private final int[] h2;
@@ -42,9 +40,9 @@ public class TicEvents implements Listener {
 
     public TicEvents(TicTacToe plugin) {
         this.plugin = plugin;
-        String key = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUv";
-        O = getSkull(key + "NTU5MjAxZDhmNjZmMWVjMTNjMTgyMjNmMzYzNjgzMjRjZTY4ZjIwNmEyODE0NGZkM2RiMTVhMzQzNTE2YSJ9fX0=");
-        X = getSkull(key + "NWE2Nzg3YmEzMjU2NGU3YzJmM2EwY2U2NDQ5OGVjYmIyM2I4OTg0NWU1YTY2YjVjZWM3NzM2ZjcyOWVkMzcifX19");
+        nps = new NonPlayerSkulls();
+        O = nps.getSkull("NTU5MjAxZDhmNjZmMWVjMTNjMTgyMjNmMzYzNjgzMjRjZTY4ZjIwNmEyODE0NGZkM2RiMTVhMzQzNTE2YSJ9fX0=");
+        X = nps.getSkull("NWE2Nzg3YmEzMjU2NGU3YzJmM2EwY2U2NDQ5OGVjYmIyM2I4OTg0NWU1YTY2YjVjZWM3NzM2ZjcyOWVkMzcifX19");
 
         SkullMeta OMeta = (SkullMeta) O.getItemMeta();
         OMeta.setDisplayName(ChatColor.BOLD + "O");
@@ -140,6 +138,7 @@ public class TicEvents implements Listener {
                 plugin.gameFinished.put(player2.getUniqueId(),true);
                 player1.closeInventory();
                 player2.closeInventory();
+                return;
             }
         }
 
@@ -152,6 +151,7 @@ public class TicEvents implements Listener {
                 plugin.gameFinished.put(player2.getUniqueId(),true);
                 player1.closeInventory();
                 player2.closeInventory();
+                return;
             }
 
             if(plugin.player1C.get(player1.getUniqueId()) == 5 && plugin.player2C.get(player2.getUniqueId()) == 4){
@@ -187,6 +187,14 @@ public class TicEvents implements Listener {
         Player player = (Player) e.getPlayer();
 
         if (plugin.playerOne.containsKey(player.getUniqueId())) {
+
+            if(plugin.player1C.get(player1.getUniqueId()) == 0 && plugin.player2C.get(player2.getUniqueId()) == 0){
+                player1.sendMessage(plugin.getLanguageString("playerQuit"));
+                player2.sendMessage(plugin.getLanguageString("pQuit"));
+                player2.closeInventory();
+                return;
+            }
+
             player1.sendMessage(plugin.getLanguageString("game.lose"));
             player2.sendMessage(plugin.getLanguageString("game.win"));
 
@@ -194,6 +202,14 @@ public class TicEvents implements Listener {
             player2.closeInventory();
 
         } else if(plugin.playerTwo.containsKey(player.getUniqueId())){
+
+            if(plugin.player1C.get(player1.getUniqueId()) == 0 && plugin.player2C.get(player2.getUniqueId()) == 0){
+                player1.sendMessage(plugin.getLanguageString("pQuit"));
+                player2.sendMessage(plugin.getLanguageString("playerQuit"));
+                player1.closeInventory();
+                return;
+            }
+
             player2.sendMessage(plugin.getLanguageString("game.lose"));
             player1.sendMessage(plugin.getLanguageString("game.win"));
 
@@ -225,26 +241,5 @@ public class TicEvents implements Listener {
         plugin.player2C.remove(player2.getUniqueId());
         plugin.playerOne.remove(player1.getUniqueId());
         plugin.playerTwo.remove(player2.getUniqueId());
-    }
-
-    private ItemStack getSkull(String url) {
-        ItemStack head = new ItemStack(Material.PLAYER_HEAD);
-        if (url.isEmpty()) {
-            return head;
-        }
-
-        SkullMeta headMeta = (SkullMeta) head.getItemMeta();
-        GameProfile profile = new GameProfile(UUID.randomUUID(), null);
-        profile.getProperties().put("textures", new Property("textures", url));
-        Field profileField;
-        try {
-            profileField = headMeta.getClass().getDeclaredField("profile");
-            profileField.setAccessible(true);
-            profileField.set(headMeta, profile);
-        } catch (NoSuchFieldException | IllegalArgumentException | IllegalAccessException ignored) {
-
-        }
-        head.setItemMeta(headMeta);
-        return head;
     }
 }

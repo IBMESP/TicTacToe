@@ -1,14 +1,15 @@
-package com.gmail.ibmesp1;
+package com.gmail.ibmesp1.ttt;
 
-import com.gmail.ibmesp1.commands.TicCommand;
-import com.gmail.ibmesp1.commands.TicTab;
-import com.gmail.ibmesp1.game.GameClick;
-import com.gmail.ibmesp1.events.TicEvents;
-import com.gmail.ibmesp1.game.GameStart;
-import com.gmail.ibmesp1.utils.ArmorUtils;
-import com.gmail.ibmesp1.utils.DataManager;
-import com.gmail.ibmesp1.utils.Metrics;
-import com.gmail.ibmesp1.utils.UpdateCheck;
+import com.gmail.ibmesp1.ibcore.utils.DataManager;
+import com.gmail.ibmesp1.ibcore.utils.Metrics;
+import com.gmail.ibmesp1.ibcore.utils.UpdateChecker;
+import com.gmail.ibmesp1.ibcore.utils.Utils;
+import com.gmail.ibmesp1.ttt.commands.TicCommand;
+import com.gmail.ibmesp1.ttt.commands.TicTab;
+import com.gmail.ibmesp1.ttt.game.GameClick;
+import com.gmail.ibmesp1.ttt.events.TicEvents;
+import com.gmail.ibmesp1.ttt.game.GameStart;
+import com.gmail.ibmesp1.ttt.utils.ArmorUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -34,13 +35,13 @@ public final class TicTacToe extends JavaPlugin {
     public GameStart gameStart;
     public ArmorUtils armorUtils;
 
-    public final int languageFileVersion = 1;
+    public final int languageFileVersion = 2;
 
     @Override
     public void onEnable() {
-        PluginDescriptionFile pdffile = getDescription();
-        version = pdffile.getVersion();
-        name = "[" + pdffile.getName() + "]";
+        PluginDescriptionFile pdfile = getDescription();
+        version = pdfile.getVersion();
+        name = "[" + pdfile.getName() + "]";
 
         languageData = new DataManager(this,"languages/" + getConfig().getString("locale") + ".yml");
         tablesLoc = new DataManager(this,"tablesLoc.yml");
@@ -70,7 +71,7 @@ public final class TicTacToe extends JavaPlugin {
         tablesLoc.getConfig().options().copyDefaults(true);
         tablesLoc.saveConfig();
 
-        new UpdateCheck(this,102743).getLatestVersion(version -> {
+        new UpdateChecker(this,102743).getLatestVersion(version -> {
             if(this.getDescription().getVersion().equalsIgnoreCase(version)) {
                 Bukkit.getLogger().info("[TicTacToe] " + getLanguageString("config.notUpdate"));
             } else {
@@ -79,10 +80,10 @@ public final class TicTacToe extends JavaPlugin {
         });
 
         if (getConfig().getInt("languageFile") < languageFileVersion) {
-            urgentConsoleWarning("You language files are no longer supported with this version!");
-            urgentConsoleWarning("Please update en_US.yml and update any other language files to version " +
+            Utils.urgentConsoleWarning(name,"You language files are no longer supported with this version!");
+            Utils.urgentConsoleWarning(name,"Please update en_US.yml and update any other language files to version " +
                     ChatColor.AQUA + languageFileVersion + ChatColor.RED + ".");
-            urgentConsoleWarning("Please do not update your config.yml until your language files have been updated.");
+            Utils.urgentConsoleWarning(name,"Please do not update your config.yml until your language files have been updated.");
         }
     }
 
@@ -107,9 +108,5 @@ public final class TicTacToe extends JavaPlugin {
 
     public String getLanguageString(String path) {
         return languageData.getConfig().getString(path);
-    }
-
-    private void urgentConsoleWarning(String msg) {
-        Bukkit.getConsoleSender().sendMessage("[TicTacToe] " + ChatColor.RED + msg);
     }
 }

@@ -1,8 +1,8 @@
 name: TicTacToe
 version: '${project.version}'
-main: com.gmail.ibmesp1.TicTacToe
+main: com.gmail.ibmesp1.ttt.TicTacToe
 api-version: 1.13
-authors: [IBM_ESP]
+authors: [Ib]
 
 commands:
   ttt:

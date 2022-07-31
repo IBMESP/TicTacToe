@@ -1,9 +1,9 @@
-package com.gmail.ibmesp1.commands;
+package com.gmail.ibmesp1.ttt.commands;
 
-import com.gmail.ibmesp1.TicTacToe;
-import com.gmail.ibmesp1.game.GameStart;
-import com.gmail.ibmesp1.utils.ArmorUtils;
-import com.gmail.ibmesp1.utils.DataManager;
+import com.gmail.ibmesp1.ibcore.utils.DataManager;
+import com.gmail.ibmesp1.ttt.TicTacToe;
+import com.gmail.ibmesp1.ttt.game.GameStart;
+import com.gmail.ibmesp1.ttt.utils.ArmorUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -37,8 +37,9 @@ public class TicCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+
         if(!(sender instanceof Player)){
-            Bukkit.getConsoleSender().sendMessage("");
+            Bukkit.getConsoleSender().sendMessage(plugin.name + ChatColor.RED + " You can't execute this from the console");
             return false;
         }
 

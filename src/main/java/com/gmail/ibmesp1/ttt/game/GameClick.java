@@ -1,14 +1,12 @@
-package com.gmail.ibmesp1.game;
+package com.gmail.ibmesp1.ttt.game;
 
-import com.gmail.ibmesp1.TicTacToe;
-import com.gmail.ibmesp1.utils.DataManager;
+import com.gmail.ibmesp1.ibcore.utils.DataManager;
+import com.gmail.ibmesp1.ttt.TicTacToe;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,8 +17,6 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class GameClick implements Listener {
@@ -82,7 +78,7 @@ public class GameClick implements Listener {
                     int y = loc.getBlockY();
                     int z = loc.getBlockZ();
 
-                    String path = world + "-" + x + "-" + y + "-" + z;
+                    String path = world + x + "-" + y + "-" + z;
 
                     tablesLoc.getConfig().set("Locations." + path + ".worldType", loc.getWorld().getName());
                     tablesLoc.getConfig().set("Locations." + path + ".x", loc.getBlockX());
@@ -159,7 +155,6 @@ public class GameClick implements Listener {
     private boolean checkTable(Material block,Location loc){
 
         List<String> gameTables = plugin.getConfig().getStringList("gameTables");
-
 
         for (String gameTable : gameTables) {
             if (block.equals(Material.getMaterial(gameTable))) {

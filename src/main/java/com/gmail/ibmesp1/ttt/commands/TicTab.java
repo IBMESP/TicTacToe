@@ -1,4 +1,4 @@
-package com.gmail.ibmesp1.commands;
+package com.gmail.ibmesp1.ttt.commands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -16,9 +16,11 @@ public class TicTab implements TabCompleter {
         if (args.length == 1) {
             List<String> fill = new ArrayList<>();
             fill.add("accept");
+            fill.add("delete");
+            fill.add("give");
             fill.add("reload");
             fill.add("help");
-            fill.add("give");
+            fill.add("version");
 
             for (String s : fill) {
                 if (s.toLowerCase().startsWith(args[0].toLowerCase())) {

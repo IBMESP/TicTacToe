@@ -1,6 +1,7 @@
-package com.gmail.ibmesp1.utils;
+package com.gmail.ibmesp1.ttt.utils;
 
-import com.gmail.ibmesp1.TicTacToe;
+import com.gmail.ibmesp1.ibcore.utils.DataManager;
+import com.gmail.ibmesp1.ttt.TicTacToe;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;

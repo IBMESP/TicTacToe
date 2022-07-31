@@ -10,11 +10,14 @@ game:
   60s: "You have 60 seconds to accept the invitation"
   expired: "The invitation has expired"
   noInvitation: "You don't have any invitation"
+  notOnline: " is not online"
+  autoInvite: "You can not invite yourself"
   table:
     title: "Game Table"
     subtitle: "Click to invite a player"
-notOnline: " is not online"
-autoInvite: "You can not invite yourself"
+  quit:
+    playerQuit: "You quitted the game"
+    pQuit: " have quitted the game"
 config:
   reloaded: "[TicTacToe] Config reloaded!"
   perms: "You do not have permission to use this command"
