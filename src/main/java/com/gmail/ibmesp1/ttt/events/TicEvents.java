@@ -189,8 +189,8 @@ public class TicEvents implements Listener {
         if (plugin.playerOne.containsKey(player.getUniqueId())) {
 
             if(plugin.player1C.get(player1.getUniqueId()) == 0 && plugin.player2C.get(player2.getUniqueId()) == 0){
-                player1.sendMessage(plugin.getLanguageString("playerQuit"));
-                player2.sendMessage(plugin.getLanguageString("pQuit"));
+                player1.sendMessage(plugin.getLanguageString("game.quit.playerQuit"));
+                player2.sendMessage(plugin.getLanguageString("game.quit.pQuit"));
                 player2.closeInventory();
                 return;
             }
@@ -204,8 +204,8 @@ public class TicEvents implements Listener {
         } else if(plugin.playerTwo.containsKey(player.getUniqueId())){
 
             if(plugin.player1C.get(player1.getUniqueId()) == 0 && plugin.player2C.get(player2.getUniqueId()) == 0){
-                player1.sendMessage(plugin.getLanguageString("pQuit"));
-                player2.sendMessage(plugin.getLanguageString("playerQuit"));
+                player1.sendMessage(plugin.getLanguageString("game.quit.pQuit"));
+                player2.sendMessage(plugin.getLanguageString("game.quit.playerQuit"));
                 player1.closeInventory();
                 return;
             }

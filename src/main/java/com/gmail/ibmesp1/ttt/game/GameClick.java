@@ -126,13 +126,13 @@ public class GameClick implements Listener {
         Player player2 = Bukkit.getPlayer(msg);
 
         if(player2 == null){
-            player.sendMessage(ChatColor.RED + msg + plugin.getLanguageString("notOnline"));
+            player.sendMessage(ChatColor.RED + msg + plugin.getLanguageString("game.notOnline"));
             plugin.gameInvitation.remove(player.getUniqueId());
             return;
         }
 
         if(player == player2){
-            player.sendMessage(ChatColor.RED + plugin.getLanguageString("autoInvite"));
+            player.sendMessage(ChatColor.RED + plugin.getLanguageString("game.autoInvite"));
             plugin.gameInvitation.remove(player.getUniqueId());
             return;
         }
@@ -164,7 +164,7 @@ public class GameClick implements Listener {
                 int y = loc.getBlockY();
                 int z = loc.getBlockZ();
 
-                String path = world + "-" + x + "-" + y + "-" + z;
+                String path = world + x + "-" + y + "-" + z;
 
                 return tablesLoc.getConfig().contains("Locations." + path);
             }

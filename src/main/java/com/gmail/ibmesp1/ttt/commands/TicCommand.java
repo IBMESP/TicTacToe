@@ -64,7 +64,7 @@ public class TicCommand implements CommandExecutor {
                         int y = loc.getBlockY();
                         int z = loc.getBlockZ();
 
-                        String path = world + "-" + x + "-" + y + "-" + z;
+                        String path = world + x + "-" + y + "-" + z;
 
                         if(tablesLoc.getConfig().contains("Locations." + path)){
                             Collection<Entity> entityList = loc.getWorld().getNearbyEntities(loc,1,1,1);
