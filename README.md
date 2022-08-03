@@ -1,7 +1,7 @@
 # TicTacToe
 Spigot plugin that adds TicTacToe
 ## Badges:
-[![Latest Version](https://img.shields.io/badge/Latest%20Version-1.0.0-brightgreen)](https://github.com/IBMESP/TicTacToe/releases/latest)
+[![Latest Version](https://img.shields.io/badge/Latest%20Version-1.0.2-brightgreen)](https://github.com/IBMESP/TicTacToe/releases/latest)
 ![Spigot Downloads](https://img.shields.io/spiget/downloads/102743?label=Spigot%20Downloads)
 ![Spigot Rating](https://img.shields.io/spiget/rating/102743?label=Spigot%20Rating)
 
