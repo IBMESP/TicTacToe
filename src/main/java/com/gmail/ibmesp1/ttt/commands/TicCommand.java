@@ -131,11 +131,13 @@ public class TicCommand implements CommandExecutor {
                 return false;
             }
 
+            if(args[0].equalsIgnoreCase("accept")){
             Player player1 = Bukkit.getPlayer(plugin.players.get(player.getUniqueId()));
 
             gameStart.gameStarts(player1,player);
 
             plugin.players.remove(player.getUniqueId());
+            }
         }
 
         return false;
