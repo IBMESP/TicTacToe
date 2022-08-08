@@ -6,11 +6,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
@@ -58,10 +60,8 @@ public class GameClick implements Listener {
         Location loc = e.getClickedBlock().getLocation();
 
         if(!player.getInventory().getItemInMainHand().equals(nameTag)) {
-
-            if (plugin.gameInvitation.containsKey(player.getUniqueId())) {
+            if (plugin.gameInvitation.containsKey(player.getUniqueId()))
                 return;
-            }
 
             if (checkTable(block, loc)) {
                 player.sendMessage(plugin.getLanguageString("game.invite"));
@@ -78,7 +78,7 @@ public class GameClick implements Listener {
                     int y = loc.getBlockY();
                     int z = loc.getBlockZ();
 
-                    String path = world + x + "-" + y + "-" + z;
+                    String path = world + "_" + x + "_" + y + "_" + z;
 
                     tablesLoc.getConfig().set("Locations." + path + ".worldType", loc.getWorld().getName());
                     tablesLoc.getConfig().set("Locations." + path + ".x", loc.getBlockX());
@@ -109,6 +109,17 @@ public class GameClick implements Listener {
                     subtitle.setVisible(false);
                 }
             }
+        }
+    }
+
+    @EventHandler
+    public void onBreak(BlockBreakEvent e) {
+        Player player = e.getPlayer();
+        Block block = e.getBlock();
+
+        if(checkTable(block.getType(),block.getLocation())) {
+            e.setCancelled(true);
+            player.sendMessage(plugin.getLanguageString("config.delete"));
         }
     }
 
@@ -153,18 +164,19 @@ public class GameClick implements Listener {
     }
 
     private boolean checkTable(Material block,Location loc){
+        if(plugin.getConfig().getStringList("gameTables") == null)
+            return false;
 
         List<String> gameTables = plugin.getConfig().getStringList("gameTables");
 
         for (String gameTable : gameTables) {
             if (block.equals(Material.getMaterial(gameTable))) {
-
                 String world = loc.getWorld().getName();
                 int x = loc.getBlockX();
                 int y = loc.getBlockY();
                 int z = loc.getBlockZ();
 
-                String path = world + x + "-" + y + "-" + z;
+                String path = world + "_" + x + "_" + y + "_" + z;
 
                 return tablesLoc.getConfig().contains("Locations." + path);
             }

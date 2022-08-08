@@ -5,7 +5,6 @@ import com.gmail.ibmesp1.ibcore.utils.Metrics;
 import com.gmail.ibmesp1.ibcore.utils.UpdateChecker;
 import com.gmail.ibmesp1.ibcore.utils.Utils;
 import com.gmail.ibmesp1.ttt.commands.TicCommand;
-import com.gmail.ibmesp1.ttt.commands.TicTab;
 import com.gmail.ibmesp1.ttt.game.GameClick;
 import com.gmail.ibmesp1.ttt.events.TicEvents;
 import com.gmail.ibmesp1.ttt.game.GameStart;
@@ -35,7 +34,7 @@ public final class TicTacToe extends JavaPlugin {
     public GameStart gameStart;
     public ArmorUtils armorUtils;
 
-    public final int languageFileVersion = 2;
+    public final int languageFileVersion = 3;
 
     @Override
     public void onEnable() {
@@ -89,12 +88,12 @@ public final class TicTacToe extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        armorUtils = new ArmorUtils(this,tablesLoc);
         armorUtils.deleteHolo();
     }
 
     public void registerCommands() {
-        getCommand("ttt").setExecutor(new TicCommand(this,gameStart, tablesLoc, armorUtils));
-        getCommand("ttt").setTabCompleter(new TicTab());
+        getCommand("ttt").setExecutor(new TicCommand(this,tablesLoc,gameStart));
     }
 
     public void registerEvents(){

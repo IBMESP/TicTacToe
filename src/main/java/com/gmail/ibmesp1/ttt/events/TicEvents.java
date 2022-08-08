@@ -27,7 +27,7 @@ public class TicEvents implements Listener {
     private final ItemStack head;
     private int player1Counter;
     private int player2Counter;
-    private NonPlayerSkulls nps;
+    private final NonPlayerSkulls nps;
 
     private final int[] h1;
     private final int[] h2;
@@ -69,6 +69,9 @@ public class TicEvents implements Listener {
 
     @EventHandler
     public void onClick(InventoryClickEvent e) {
+        if(e.getClickedInventory() == null)
+            return;
+
         InventoryView inventoryView = e.getView();
 
         player1Counter = 0;
@@ -79,6 +82,9 @@ public class TicEvents implements Listener {
         }
 
         e.setCancelled(true);
+
+        if(e.getCurrentItem() == null)
+            return;
 
         if (e.getCurrentItem().equals(glass) || e.getCurrentItem().equals(head)) {
             return;
@@ -181,6 +187,9 @@ public class TicEvents implements Listener {
 
         List<HumanEntity> players = e.getViewers();
 
+        if(players.size() < 2)
+            return;
+
         Player player1 = (Player) players.get(0);
         Player player2 = (Player) players.get(1);
 
@@ -190,7 +199,8 @@ public class TicEvents implements Listener {
 
             if(plugin.player1C.get(player1.getUniqueId()) == 0 && plugin.player2C.get(player2.getUniqueId()) == 0){
                 player1.sendMessage(plugin.getLanguageString("game.quit.playerQuit"));
-                player2.sendMessage(plugin.getLanguageString("game.quit.pQuit"));
+                player2.sendMessage(player1.getName() + plugin.getLanguageString("game.quit.pQuit"));
+                endGame(player1,player2);
                 player2.closeInventory();
                 return;
             }
@@ -204,8 +214,9 @@ public class TicEvents implements Listener {
         } else if(plugin.playerTwo.containsKey(player.getUniqueId())){
 
             if(plugin.player1C.get(player1.getUniqueId()) == 0 && plugin.player2C.get(player2.getUniqueId()) == 0){
-                player1.sendMessage(plugin.getLanguageString("game.quit.pQuit"));
+                player1.sendMessage(player2.getName() + plugin.getLanguageString("game.quit.pQuit"));
                 player2.sendMessage(plugin.getLanguageString("game.quit.playerQuit"));
+                endGame(player1,player2);
                 player1.closeInventory();
                 return;
             }

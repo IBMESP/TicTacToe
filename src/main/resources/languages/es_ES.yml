@@ -24,3 +24,5 @@ config:
   help: "Usa /ttt help para ver los comandos"
   update: "TicTacToe tiene una nueva actializacion"
   notUpdate: "TicTacToe esta actualizado"
+  console: "Solo un jugador puede usar este comando"
+  delete: "Usa /ttt delete"

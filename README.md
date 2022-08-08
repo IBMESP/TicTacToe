@@ -1,14 +1,14 @@
 # TicTacToe
 Spigot plugin that adds TicTacToe
 ## Badges:
-[![Latest Version](https://img.shields.io/badge/Latest%20Version-1.0.2-brightgreen)](https://github.com/IBMESP/TicTacToe/releases/latest)
+[![Latest Version](https://img.shields.io/badge/Latest%20Version-1.0.3-brightgreen)](https://github.com/IBMESP/TicTacToe/releases/latest)
 ![Spigot Downloads](https://img.shields.io/spiget/downloads/102743?label=Spigot%20Downloads)
 ![Spigot Rating](https://img.shields.io/spiget/rating/102743?label=Spigot%20Rating)
 
 ### Features
 - **TableMaker** to create Game Tables
 - **Configure** which blocks can be converted to a Game Table
-- **Multiple languages**
+- **[Multiple languages](https://github.com/IBMESP/TicTacToe/wiki)**
 
 ### Showcase
 ![](https://media0.giphy.com/media/ssfZvuYtWrcCoQrd40/giphy.gif?cid=790b7611b5ef57b923c37af2287dc75b1d7729ecb6cbb1b9&rid=giphy.gif&ct=g)
@@ -36,9 +36,10 @@ Spigot plugin that adds TicTacToe
 
   # This is the en_US.yml version for reference.
   # ONLY EDIT ONCE ALL LANGUAGE FILES HAVE BEEN UPDATED.
-  languageFile: 1
+  languageFile: 3
 
   # Blocks that you can convert into a game table
+  # If you want to add a block you can get the id from here https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
   gameTables:
     - EMERALD_BLOCK
     - CHISELED_STONE_BRICKS
@@ -71,5 +72,7 @@ Spigot plugin that adds TicTacToe
     help: "Use /ttt help to see the commands"
     update: "TicTacToe has a new update"
     notUpdate: "TicTacToe is up to date"
+    console: "Only a player can use this command"
+    delete: "Use /ttt delete"
   ```
 </details>

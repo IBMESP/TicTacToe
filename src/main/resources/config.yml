@@ -5,7 +5,7 @@ locale: en_US
 
 # This is the en_US.yml version for reference.
 # ONLY EDIT ONCE ALL LANGUAGE FILES HAVE BEEN UPDATED.
-languageFile: 2
+languageFile: 3
 
 # Blocks that you can convert into a game table
 # If you want to add a block you can get the id from here https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
