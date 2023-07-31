@@ -2,18 +2,18 @@
 Spigot plugin that adds TicTacToe
 ## Badges:
 [![Latest Version](https://img.shields.io/badge/Latest%20Version-1.0.3-brightgreen)](https://github.com/IBMESP/TicTacToe/releases/latest)
-![Spigot Downloads](https://img.shields.io/spiget/downloads/102743?label=Spigot%20Downloads)
-![Spigot Rating](https://img.shields.io/spiget/rating/102743?label=Spigot%20Rating)
 
-### Features
+![](https://i.imgur.com/zQXHvoK.png)
+
+![](https://i.imgur.com/sC21XMr.png)
 - **TableMaker** to create Game Tables
 - **Configure** which blocks can be converted to a Game Table
 - **[Multiple languages](https://github.com/IBMESP/TicTacToe/wiki)**
 
-### Showcase
+![](https://i.imgur.com/NiJ0vLF.png)
 ![](https://media0.giphy.com/media/ssfZvuYtWrcCoQrd40/giphy.gif?cid=790b7611b5ef57b923c37af2287dc75b1d7729ecb6cbb1b9&rid=giphy.gif&ct=g)
 
-### Commands and permissions
+![](https://i.imgur.com/D6Dpq8w.png)
 - **Permission:** ttt.delete →
     - **Commands:**
         - /ttt delete : Deletes the game table you are looking at
@@ -24,7 +24,7 @@ Spigot plugin that adds TicTacToe
     - **Commands:**
         - /ttt give : Gives the Table Maker
         
-### Config
+![](https://i.imgur.com/x67FxK2.png)
 <details>
   <summary>Default config.yml</summary>
 
